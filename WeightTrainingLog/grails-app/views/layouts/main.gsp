@@ -34,6 +34,9 @@
 			<div id="wtlLogo" role="banner">
 				<a href="http://weighttraininglog.cloudfoundry.com"><g:meta name="app.name" /></a>
 			</div>
+			<div align="right">
+				Logged in user: ${session?.user?.userName}
+			</div>
 		</div>
 		
 		<div data-role="content">

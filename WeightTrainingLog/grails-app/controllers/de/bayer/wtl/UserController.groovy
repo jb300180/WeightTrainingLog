@@ -13,6 +13,28 @@ class UserController {
 		redirect(action: "list", params: params)
 	}
 
+	def login() {
+		log.info "logging in - user: ${params.userName}"
+		session.user = null
+		if (params.userName) {
+			def user = User.findByUserName(params.userName)
+			print "password ${user?.password} - password in mask: ${params.password}"
+			log.info "password ${user?.password} - password in mask: ${params.password}"
+			if (user.password!=params.password) {
+				flash.message = message(code: 'default.login.incorrect.message')
+				return
+			}
+
+			// if login worked than:
+			//  * set user in session
+			//  * flash message
+			//  * redirect
+			session.user = user
+			flash.message = message(code: 'default.login.message')
+			redirect(controller: 'training', action: 'dashboard')
+		}
+	}
+
 	def list() {
 		params.max = Math.min(params.max ? params.int('max') : 10, 100)
 		[userInstanceList: User.list(params), userInstanceTotal: User.count()]
