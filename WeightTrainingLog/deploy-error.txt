@@ -1,0 +1,6 @@
+deploy fehler:
+
+[2012-04-10 17:18:14,102] [ERROR] [org.hibernate.tool.hbm2ddl.SchemaUpdate] Unsuccessful: create table set (id bigint not null auto_increment, version bigint not null, exercise_id bigint not null, reps integer not null, weight decimal(19,2), primary key (id)) ENGINE=InnoDB
+[2012-04-10 17:18:14,103] [ERROR] [org.hibernate.tool.hbm2ddl.SchemaUpdate] You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'set (id bigint not null auto_increment, version bigint not null, exercise_id big' at line 1
+[2012-04-10 17:18:14,126] [ERROR] [org.hibernate.tool.hbm2ddl.SchemaUpdate] Unsuccessful: alter table set add index FK1BC622CD678D (exercise_id), add constraint FK1BC622CD678D foreign key (exercise_id) references exercise (id)
+[2012-04-10 17:18:14,126] [ERROR] [org.hibernate.tool.hbm2ddl.SchemaUpdate] You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'set add index FK1BC622CD678D (exercise_id), add constraint FK1BC622CD678D foreig' at line 1
