@@ -14,7 +14,7 @@ class Training {
 	static belongsTo = [user: User]
 
 	static hasMany = [sets: Set]
-	//	static mapping = { sets sort: 'order' }
+	static mapping = { sets sort: 'order' }
 
 
 	static constraints = {

@@ -11,7 +11,7 @@ class SetControllerTests {
 
 	def populateValidParams(params) {
 		assert params != null
-		params['ordering']=1
+		params['order']=1
 		params['exercise.name']='Bench press'
 		params['exercise.description']='press the bar'
 		params['reps']=3

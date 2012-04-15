@@ -12,124 +12,28 @@ class TrainingController {
 		[trainingInstanceList: Training.list(params), trainingInstanceTotal: Training.count()]
 	}
 
-	//	def index() {
-	//		redirect(action: "list", params: params)
-	//	}
-	//
-	//	def list() {
-	//		params.max = Math.min(params.max ? params.int('max') : 10, 100)
-	//		[trainingInstanceList: Training.list(params), trainingInstanceTotal: Training.count()]
-	//	}
-	//
-	//	def create() {
-	//		[trainingInstance: new Training(params)]
-	//	}
-	//
-	//	def save() {
-	//		def trainingInstance = new Training(params)
-	//		if (!trainingInstance.save(flush: true)) {
-	//			render(view: "create", model: [trainingInstance: trainingInstance])
-	//			return
-	//		}
-	//
-	//		flash.message = message(code: 'default.created.message', args: [
-	//			message(code: 'training.label', default: 'Training'),
-	//			trainingInstance.id
-	//		])
-	//		redirect(action: "show", id: trainingInstance.id)
-	//	}
-	//
-	//	def show() {
-	//		def trainingInstance = Training.get(params.id)
-	//		if (!trainingInstance) {
-	//			flash.message = message(code: 'default.not.found.message', args: [
-	//				message(code: 'training.label', default: 'Training'),
-	//				params.id
-	//			])
-	//			redirect(action: "list")
-	//			return
-	//		}
-	//
-	//		[trainingInstance: trainingInstance]
-	//	}
-	//
-	//	def edit() {
-	//		def trainingInstance = Training.get(params.id)
-	//		if (!trainingInstance) {
-	//			flash.message = message(code: 'default.not.found.message', args: [
-	//				message(code: 'training.label', default: 'Training'),
-	//				params.id
-	//			])
-	//			redirect(action: "list")
-	//			return
-	//		}
-	//
-	//		[trainingInstance: trainingInstance]
-	//	}
-	//
-	//	def update() {
-	//		def trainingInstance = Training.get(params.id)
-	//		if (!trainingInstance) {
-	//			flash.message = message(code: 'default.not.found.message', args: [
-	//				message(code: 'training.label', default: 'Training'),
-	//				params.id
-	//			])
-	//			redirect(action: "list")
-	//			return
-	//		}
-	//
-	//		if (params.version) {
-	//			def version = params.version.toLong()
-	//			if (trainingInstance.version > version) {
-	//				trainingInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
-	//						[
-	//							message(code: 'training.label', default: 'Training')]
-	//						as Object[],
-	//						"Another user has updated this Training while you were editing")
-	//				render(view: "edit", model: [trainingInstance: trainingInstance])
-	//				return
-	//			}
-	//		}
-	//
-	//		trainingInstance.properties = params
-	//
-	//		if (!trainingInstance.save(flush: true)) {
-	//			render(view: "edit", model: [trainingInstance: trainingInstance])
-	//			return
-	//		}
-	//
-	//		flash.message = message(code: 'default.updated.message', args: [
-	//			message(code: 'training.label', default: 'Training'),
-	//			trainingInstance.id
-	//		])
-	//		redirect(action: "show", id: trainingInstance.id)
-	//	}
-	//
-	//	def delete() {
-	//		def trainingInstance = Training.get(params.id)
-	//		if (!trainingInstance) {
-	//			flash.message = message(code: 'default.not.found.message', args: [
-	//				message(code: 'training.label', default: 'Training'),
-	//				params.id
-	//			])
-	//			redirect(action: "list")
-	//			return
-	//		}
-	//
-	//		try {
-	//			trainingInstance.delete(flush: true)
-	//			flash.message = message(code: 'default.deleted.message', args: [
-	//				message(code: 'training.label', default: 'Training'),
-	//				params.id
-	//			])
-	//			redirect(action: "list")
-	//		}
-	//		catch (DataIntegrityViolationException e) {
-	//			flash.message = message(code: 'default.not.deleted.message', args: [
-	//				message(code: 'training.label', default: 'Training'),
-	//				params.id
-	//			])
-	//			redirect(action: "show", id: params.id)
-	//		}
-	//	}
+	def create() {
+		print "session user: ${session.user}"
+		//		[trainingInstance: new Training(params)]
+		def trainingInstance1 = new Training(params)
+		trainingInstance1.user = session.user
+		[trainingInstance: trainingInstance1]
+	}
+
+	def save() {
+		print 'saving...'
+		def trainingInstance = new Training(params)
+		trainingInstance.user = session.user
+		if (!trainingInstance.save(flush: true)) {
+			render(view: "create", model: [trainingInstance: trainingInstance])
+			return
+		}
+
+		flash.message = message(code: 'default.created.message', args: [
+			message(code: 'training.label', default: 'Training'),
+			trainingInstance.id
+		])
+		redirect(action: "dashboard")
+		//		redirect(action: "show", id: trainingInstance.id)
+	}
 }

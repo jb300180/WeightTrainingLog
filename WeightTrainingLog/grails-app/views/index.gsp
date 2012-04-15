@@ -14,6 +14,15 @@
 			currently deployed in this application, click on each to execute its
 			default action:</p>
 
+		<div id="content">
+			<h2>quick links&hellip;</h2>
+			<ul>
+				<li><g:link controller="user" action="login">login</g:link>
+				<li><g:link controller="training" action="dashboard">Dashboard</g:link>
+				</li>
+			</ul>
+		</div>
+		
 		<div id="controller-list" role="navigation">
 			<h2>Available Controllers:</h2>
 			<ul>
@@ -27,14 +36,6 @@
 			</ul>
 		</div>
 		
-		<div id="content">
-			<h2>quick links&hellip;</h2>
-			<ul>
-				<li><g:link controller="user" action="login">login</g:link>
-				<li><g:link controller="training" action="dashboard">Dashboard</g:link>
-				</li>
-			</ul>
-		</div>
 	</div>
 </body>
 </html>

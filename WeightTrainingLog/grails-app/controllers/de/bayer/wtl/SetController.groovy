@@ -18,10 +18,12 @@ class SetController {
 	}
 
 	def create() {
+		print 'create set'
 		[setInstance: new Set(params)]
 	}
 
 	def save() {
+		print 'save'
 		def setInstance = new Set(params)
 		if (!setInstance.save(flush: true)) {
 			render(view: "create", model: [setInstance: setInstance])
@@ -32,10 +34,12 @@ class SetController {
 			message(code: 'set.label', default: 'Set'),
 			setInstance.id
 		])
-		redirect(action: "show", id: setInstance.id)
+		//		redirect(action: "show", id: setInstance.id)
+		redirect(controller: "training", action: "show", id: setInstance.training.id)
 	}
 
 	def show() {
+		print 'show'
 		def setInstance = Set.get(params.id)
 		if (!setInstance) {
 			flash.message = message(code: 'default.not.found.message', args: [
@@ -50,6 +54,7 @@ class SetController {
 	}
 
 	def edit() {
+		print 'edit'
 		def setInstance = Set.get(params.id)
 		if (!setInstance) {
 			flash.message = message(code: 'default.not.found.message', args: [
@@ -64,6 +69,7 @@ class SetController {
 	}
 
 	def update() {
+		print 'update'
 		def setInstance = Set.get(params.id)
 		if (!setInstance) {
 			flash.message = message(code: 'default.not.found.message', args: [
@@ -98,8 +104,10 @@ class SetController {
 			message(code: 'set.label', default: 'Set'),
 			setInstance.id
 		])
-		redirect(action: "show", id: setInstance.id)
+		redirect(controller: "training", action: "show", id: setInstance.training.id)
+		//		redirect(action: "show", id: setInstance.id)
 	}
+
 
 	def delete() {
 		def setInstance = Set.get(params.id)
@@ -118,14 +126,16 @@ class SetController {
 				message(code: 'set.label', default: 'Set'),
 				params.id
 			])
-			redirect(action: "list")
+			//			redirect(action: "list")
+			redirect(controller: "training", action: "show", id: setInstance.training.id)
 		}
 		catch (DataIntegrityViolationException e) {
 			flash.message = message(code: 'default.not.deleted.message', args: [
 				message(code: 'set.label', default: 'Set'),
 				params.id
 			])
-			redirect(action: "show", id: params.id)
+			//			redirect(action: "show", id: params.id)
+			redirect(controller: "training", action: "show", id: setInstance.training.id)
 		}
 	}
 }

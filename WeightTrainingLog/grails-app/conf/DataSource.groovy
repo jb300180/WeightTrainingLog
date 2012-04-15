@@ -14,8 +14,8 @@ hibernate {
 environments {
 	development {
 		dataSource {
-			//			dbCreate = "create-drop"
-			dbCreate = "update"
+			dbCreate = "create-drop"
+			//			dbCreate = "update"
 			url = "jdbc:h2:db/dev;MVCC=TRUE"
 			//			logSql = true
 		}

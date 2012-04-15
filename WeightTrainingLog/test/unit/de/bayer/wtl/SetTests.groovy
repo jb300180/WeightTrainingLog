@@ -29,23 +29,23 @@ class SetTests {
 		def set = new Set()
 
 		assert !set.validate()
-		log.info 'ordering errors: ' + set.errors["ordering"]
-		log.info "ordering ${set.ordering}"
-		assert "nullable" == set.errors["ordering"].code
+		log.info 'order errors: ' + set.errors["order"]
+		log.info "order ${set.order}"
+		assert "nullable" == set.errors["order"].code
 		assert "nullable" == set.errors["exercise"].code
 		assert "nullable" == set.errors["training"].code
 		assert "range.toosmall" == set.errors["reps"].code
 	}
 
 	void testMin() {
-		def set = new Set(ordering: 1, exercise: exercise, reps: -1)
+		def set = new Set(order: 1, exercise: exercise, reps: -1)
 		assert !set.validate()
 		assert null == set.errors["exercise"]
 		assert "range.toosmall" == set.errors["reps"].code
 	}
 
 	void testMax() {
-		def set = new Set(ordering: 1, exercise: exercise, reps: 206)
+		def set = new Set(order: 1, exercise: exercise, reps: 206)
 		assert !set.validate()
 		log.info set.errors["reps"].code
 		assert !set.errors["exercise"]
@@ -53,7 +53,7 @@ class SetTests {
 	}
 
 	void testSave() {
-		def set = new Set(ordering: 1, exercise: exercise, reps: 2, weight: new BigDecimal("65.4"), training: training)
+		def set = new Set(order: 1, exercise: exercise, reps: 2, weight: new BigDecimal("65.4"), training: training)
 		log.info "errors ${set.errors}"
 		assert set.validate()
 		assert set.save()

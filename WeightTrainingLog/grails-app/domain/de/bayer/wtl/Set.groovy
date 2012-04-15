@@ -6,15 +6,16 @@ import groovy.transform.ToString
 @ToString(includeNames = true, includeFields = true)
 class Set {
 
-	Integer ordering
+	Integer order
 	Exercise exercise
-	int reps
+	int reps=10
+	//	int reps=10
 	BigDecimal weight
 
 	static belongsTo = [training: Training]
 
 	static constraints = {
-		ordering(nullable: false)
+		order(nullable: false)
 		exercise(nullable: false)
 		reps(range: 1..200)
 		weight(nullable: true)

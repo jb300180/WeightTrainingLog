@@ -7,42 +7,48 @@
 <html lang="en" class="no-js">
 <!--<![endif]-->
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<title><g:layoutTitle default="Grails" /></title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="shortcut icon"
-	href="${resource(dir: 'images', file: 'favicon.ico')}"
-	type="image/x-icon">
-<%--<link rel="apple-touch-icon"--%>
-<%--	href="${resource(dir: 'images', file: 'apple-touch-icon.png')}">--%>
-<%--<link rel="apple-touch-icon" sizes="114x114"--%>
-<%--	href="${resource(dir: 'images', file: 'apple-touch-icon-retina.png')}">--%>
-<%--<link rel="stylesheet" href="${resource(dir: 'css', file: 'main.css')}"--%>
-<%--	type="text/css">--%>
-<%--<link rel="stylesheet"--%>
-<%--	href="${resource(dir: 'css', file: 'mobile.css')}" type="text/css">--%>
-<g:javascript library="jquery" />
-<jqDT:resources />
-<r:require modules="jquery-mobile" />
-<g:layoutHead />
-<r:layoutResources />
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title><g:layoutTitle default="Grails" /></title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon"
+		href="${resource(dir: 'images', file: 'favicon.ico')}"
+		type="image/x-icon">
+	<g:javascript library="jquery" />
+	<jqDT:resources />
+	<r:require modules="jquery-mobile" />
+	<g:layoutHead />
+	<r:layoutResources />
 </head>
-<body>run-
+<body>
+
 	<div data-role="page" data-theme="b">
+
 		<div data-role="header">
-			<div id="wtlLogo" role="banner">
-				<a href="http://weighttraininglog.cloudfoundry.com"><g:meta name="app.name" /></a>
-			</div>
 			<div align="right">
-				Logged in user: ${session?.user?.userName}
+				<g:if	test="${session.user}">
+					Logged in as user: ${session?.user?.userName}
+				</g:if>
+				<g:else>
+					<g:link controller="user" action="login">Login</g:link>
+				</g:else>
 			</div>
-		</div>
-		
+			
+			<div data-role="navbar">
+				<ul>
+					<li> <g:link controller="training" action="dashboard">Dashboard</g:link> </li>
+					<li> <g:link controller="gym">Gym</g:link> </li>
+					<li> <g:link controller="trainingType">Training Type</g:link> </li>
+					<li> <g:link controller="exercise">Exercise</g:link> </li>
+				</ul>
+			</div> <!-- navbar -->
+
+		<div> <!-- header -->
+
 		<div data-role="content">
 			<g:layoutBody />
 		</div>
-		
+
 		<div data-role="footer">
 			<g:meta name="app.name" />
 			<g:meta name="app.version" />
@@ -50,9 +56,12 @@
 				application at any time by using the grails setversion command from
 				the command line, or by editing the application.properties file
 				directly.</p>
-		</div>
-	</div>
+		</div><!-- footer -->
+		
+	</div><!-- page -->
+
 	<g:javascript library="application" />
 	<r:layoutResources />
+
 </body>
 </html>
