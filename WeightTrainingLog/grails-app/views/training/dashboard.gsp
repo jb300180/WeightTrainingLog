@@ -37,7 +37,7 @@
 						<td>${fieldValue(bean: trainingInstance.trainingType, field: "phase")} // ${fieldValue(bean: trainingInstance.trainingType, field: "muscleGroup")}</td>
 						<td>${fieldValue(bean: trainingInstance.gym, field: "name")} // ${fieldValue(bean: trainingInstance.gym, field: "city")}</td>
 						<td>${fieldValue(bean: trainingInstance, field: "rating")}</td>
-						<td>${fieldValue(bean: trainingInstance?.sets, field: "count")}</td>
+						<td>${fieldValue(bean: trainingInstance?.sets, field: "size")}</td>
 					</tr>
 				</g:each>
 				</tbody>

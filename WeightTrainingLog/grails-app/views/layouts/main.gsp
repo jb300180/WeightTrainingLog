@@ -26,12 +26,10 @@
 
 		<div data-role="header">
 			<div align="right">
-				<g:if	test="${session.user}">
-					Logged in as user: ${session?.user?.userName}
-				</g:if>
-				<g:else>
-					<g:link controller="user" action="login">Login</g:link>
-				</g:else>
+				<g:loggedInUserInfo field="userName">Guest</g:loggedInUserInfo>
+				<g:isLoggedIn>
+					<g:link controller="logout" action="index">sign out</g:link>
+				</g:isLoggedIn>
 			</div>
 			
 			<div data-role="navbar">

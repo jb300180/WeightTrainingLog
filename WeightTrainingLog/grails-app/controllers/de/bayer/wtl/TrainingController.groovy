@@ -16,14 +16,16 @@ class TrainingController {
 		print "session user: ${session.user}"
 		//		[trainingInstance: new Training(params)]
 		def trainingInstance1 = new Training(params)
-		trainingInstance1.user = session.user
+		// TODO do I have to attach the user here?
+		trainingInstance1.user = session.user.attach()
 		[trainingInstance: trainingInstance1]
 	}
 
 	def save() {
 		print 'saving...'
 		def trainingInstance = new Training(params)
-		trainingInstance.user = session.user
+		// TODO do I have to attach the user here?
+		trainingInstance.user = session.user.attach()
 		if (!trainingInstance.save(flush: true)) {
 			render(view: "create", model: [trainingInstance: trainingInstance])
 			return
