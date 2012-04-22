@@ -24,7 +24,7 @@ create-auth-domains DummyUser de.bayer.wtl.Role de.bayer.wtl.Requestmap
 # than make role point to user instead of dummy user
 # if admin is created in bootstrap you may want to encode pwd:
 # 	authenticateService.encodePassword("password")
-# go to SecurityConfig and change User class... and, well do more customizing ;)
+# go to SecurityConfig and change User class... and well, do more customizing ;)
 
 # of course you have to configure bootstrap accordingly
 
