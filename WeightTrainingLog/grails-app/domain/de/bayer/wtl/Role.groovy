@@ -1,21 +1,14 @@
 package de.bayer.wtl
 
-
-
-/**
- * Authority domain class.
- */
 class Role {
 
-	static hasMany = [people: User]
-
-	/** description */
-	String description
-	/** ROLE String */
 	String authority
 
+	static mapping = {
+		cache true
+	}
+
 	static constraints = {
-		authority(blank: false, unique: true)
-		description()
+		authority blank: false, unique: true
 	}
 }

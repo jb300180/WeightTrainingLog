@@ -21,10 +21,6 @@ class UserIntegrationTests extends GroovyTestCase{
 		training = new Training(date: new Date(), gym: gym, trainingType: trainingType, sets: (set))
 	}
 
-	@After
-	void tearDown() {
-		// Tear down logic here
-	}
 
 	@Test
 	void testSomething() {

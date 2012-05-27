@@ -104,7 +104,12 @@ log4j = {
 			'org.springframework',
 			'org.hibernate',
 			'net.sf.ehcache.hibernate'
+	root { info() }
 }
 
 
 //log4j.logger.org.springframework.security='off,stdout'
+// Added by the Spring Security Core plugin:
+grails.plugins.springsecurity.userLookup.userDomainClassName = 'de.bayer.wtl.User'
+grails.plugins.springsecurity.userLookup.authorityJoinClassName = 'de.bayer.wtl.UserRole'
+grails.plugins.springsecurity.authority.className = 'de.bayer.wtl.Role'
